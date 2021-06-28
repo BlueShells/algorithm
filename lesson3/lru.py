@@ -22,6 +22,7 @@ class LRUCache:
         else:
             node = self.cache[key]
             print("found node:",node )
+            print("type of found node",type(node))
             print("this node have pre:{} and next :{}".format(node.pre, node.next))
             self.removeNode(node)
             self.cache.pop(key)
@@ -57,6 +58,10 @@ class LRUCache:
         while hh:
             print("dlink:",hh.key)
             hh = hh.next 
+        tt = self.tail 
+        while tt:
+            print("dlink revers:", tt.key)
+            tt = tt.pre 
             
             
 
@@ -65,6 +70,7 @@ class LRUCache:
         node.next = self.head.next
         self.head.next.prev = node
         self.head.next = node
+        
     def removeNode(self, node):
         print("pre :{} and next :{}".format(node.pre, node.pre))
         node.pre.next = node.next 
