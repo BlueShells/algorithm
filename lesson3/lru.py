@@ -28,7 +28,7 @@ class LRUCache:
             self.cache.pop(key)
             #重新入栈：
             self.cache[key]= node 
-            addToHead(node)
+            self.addToHead(node)
             return node.value
 
     def put(self, key: int, value: int) -> None:
@@ -67,9 +67,9 @@ class LRUCache:
             
 
     def addToHead(self,node):
-        node.prev = self.head
+        node.pre = self.head
         node.next = self.head.next
-        self.head.next.prev = node
+        self.head.next.pre = node
         self.head.next = node
         
     def removeNode(self, node):
