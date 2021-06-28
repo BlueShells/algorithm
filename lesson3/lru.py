@@ -1,9 +1,9 @@
 class DLinkedNode:
     def __init__(self, key=0, value=0):
-        self.key = key 
-        self.value = value 
-        self.pre = None 
-        self.next = None 
+        self.key = key
+        self.value = value
+        self.pre = None
+        self.next = None
 
 class LRUCache:
     def __init__(self, capacity: int):
@@ -11,14 +11,14 @@ class LRUCache:
         self.head = DLinkedNode()
         self.tail = DLinkedNode()
         self.head.next = self.tail
-        self.tail.pre = self.head 
+        self.tail.pre = self.head
         self.capacity = capacity
-        self.size = 0 
+        self.size = 0
 
     def get(self, key: int) -> int:
         #print("trying to get key:",key)
         if key not in self.cache:
-            return -1 
+            return -1
         else:
             node = self.cache[key]
             #print("found node:",node )
@@ -27,7 +27,7 @@ class LRUCache:
             self.removeNode(node)
             self.cache.pop(key)
             #重新入栈：
-            self.cache[key]= node 
+            self.cache[key]= node
             self.addToHead(node)
             return node.value
 
@@ -35,7 +35,7 @@ class LRUCache:
         #print("adding cache  key:{} value {}".format(key,value))
         if key not in self.cache:
             node = DLinkedNode(key, value)
-            self.cache[key] = node 
+            self.cache[key] = node
             #添加到表头
             self.addToHead(node)
             self.size += 1
@@ -51,36 +51,37 @@ class LRUCache:
             #print("type of node:",type(node))
             self.removeNode(node)
             self.cache.pop(key)
-            #重新入栈：
-            self.cache[key]= node 
+            #重新入栈：(注意node 的value可能不同)
+            node.value = value 
+            self.cache[key]= node
             self.addToHead(node)
         #print("current cache:", self.cache)
-        hh = self.head 
+        hh = self.head
         while hh:
             #print("dlink:",hh.key)
-            hh = hh.next 
-        tt = self.tail 
+            hh = hh.next
+        tt = self.tail
         while tt:
             #print("dlink revers:", tt.key)
-            tt = tt.pre 
-            
-            
+            tt = tt.pre
+
+
 
     def addToHead(self,node):
         node.pre = self.head
         node.next = self.head.next
         self.head.next.pre = node
         self.head.next = node
-        
+
     def removeNode(self, node):
         #print("pre :{} and next :{}".format(node.pre, node.pre))
-        node.pre.next = node.next 
-        node.next.pre = node.pre 
+        node.pre.next = node.next
+        node.next.pre = node.pre
 
     def removeTail(self):
-        node = self.tail.pre 
+        node = self.tail.pre
         self.removeNode(node)
-        return node 
+        return node
 
 
 
