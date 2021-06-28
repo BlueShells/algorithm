@@ -29,6 +29,7 @@ class LRUCache:
             #重新入栈：
             self.cache[key]= node 
             addToHead(node)
+            return node.value
 
     def put(self, key: int, value: int) -> None:
         print("adding cache  key:{} value {}".format(key,value))
