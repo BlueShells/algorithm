@@ -22,7 +22,7 @@ class LRUCache:
         else:
             node = self.cache[key]
             print("found node:",node )
-            print("this node have pre:{} and next :{}".fort(node.pre, node.next))
+            print("this node have pre:{} and next :{}".format(node.pre, node.next))
             self.removeNode(node)
             self.cache.pop(key)
             #重新入栈：
