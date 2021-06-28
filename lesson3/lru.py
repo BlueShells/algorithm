@@ -16,14 +16,14 @@ class LRUCache:
         self.size = 0 
 
     def get(self, key: int) -> int:
-        print("trying to get key:",key)
+        #print("trying to get key:",key)
         if key not in self.cache:
             return -1 
         else:
             node = self.cache[key]
-            print("found node:",node )
-            print("type of found node",type(node))
-            print("this node have pre:{} and next :{}".format(node.pre, node.next))
+            #print("found node:",node )
+            #print("type of found node",type(node))
+            #print("this node have pre:{} and next :{}".format(node.pre, node.next))
             self.removeNode(node)
             self.cache.pop(key)
             #重新入栈：
@@ -32,7 +32,7 @@ class LRUCache:
             return node.value
 
     def put(self, key: int, value: int) -> None:
-        print("adding cache  key:{} value {}".format(key,value))
+        #print("adding cache  key:{} value {}".format(key,value))
         if key not in self.cache:
             node = DLinkedNode(key, value)
             self.cache[key] = node 
@@ -48,20 +48,20 @@ class LRUCache:
         else:
             #如果存在，则，删除，再重新入栈
             node = self.cache[key]
-            print("type of node:",type(node))
+            #print("type of node:",type(node))
             self.removeNode(node)
             self.cache.pop(key)
             #重新入栈：
             self.cache[key]= node 
-            addToHead(node)
-        print("current cache:", self.cache)
+            self.addToHead(node)
+        #print("current cache:", self.cache)
         hh = self.head 
         while hh:
-            print("dlink:",hh.key)
+            #print("dlink:",hh.key)
             hh = hh.next 
         tt = self.tail 
         while tt:
-            print("dlink revers:", tt.key)
+            #print("dlink revers:", tt.key)
             tt = tt.pre 
             
             
@@ -73,7 +73,7 @@ class LRUCache:
         self.head.next = node
         
     def removeNode(self, node):
-        print("pre :{} and next :{}".format(node.pre, node.pre))
+        #print("pre :{} and next :{}".format(node.pre, node.pre))
         node.pre.next = node.next 
         node.next.pre = node.pre 
 
