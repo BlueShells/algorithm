@@ -77,7 +77,7 @@ class LRUCache:
         node.pre.next = node.next 
         node.next.pre = node.pre 
 
-    def removeTail():
+    def removeTail(self):
         node = self.tail.pre 
         self.removeNode(node)
         return node 
